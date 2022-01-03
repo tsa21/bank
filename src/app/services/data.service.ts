@@ -13,6 +13,15 @@ export class DataService {
 
 
   constructor() { }
+//to store in local storage
+  saveDetails(){
+    if(this.users){
+      localStorage.setItem("db",JSON.stringify(this.users))
+    }
+    if(this.currentUserName){
+      localStorage.setItem("cUserName",JSON.stringify(this.currentUserName))
+    }
+  }
   register(acno: any, password: any, uname: any) {
     let db = this.users
     if (acno in db) {
@@ -27,13 +36,14 @@ export class DataService {
         balance: 0
       }
       console.log(db);
+      this.saveDetails()
       return true
 
 
     }
     alert("Register clicked!!")
   }
-  
+
   login(acno: any, password: any) {
     let database = this.users
 
@@ -41,6 +51,7 @@ export class DataService {
 
       if (password == database[acno]["password"]) {
         this.currentUserName= database[acno]["uname"]
+        this.saveDetails()
         return true
 
       }
@@ -66,6 +77,7 @@ export class DataService {
     if (acno in db) {
       if (password == db[acno]["password"]) {
         db[acno]["balance"]+=amount
+        this.saveDetails()
         return db[acno]["balance"]
 
       }
@@ -90,6 +102,7 @@ export class DataService {
       if (password == db[acno]["password"]) {
         if(db[acno]["balance"]>amount){
           db[acno]["balance"]-=amount
+          this.saveDetails()
           return db[acno]["balance"]
 
         }
