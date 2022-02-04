@@ -9,45 +9,49 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  acno=""
-  pswd=""
-  uname=""
+  acno = ""
+  pswd = ""
+  uname = ""
 
-  registerForm=this.fb.group({
-    uname:['',[Validators.required,Validators.pattern('[a-zA-Z ]*')]],
-    acno:['',[Validators.required,Validators.pattern('[0-9]*')]],
-    pswd:['',[Validators.required,Validators.pattern('[a-zA-Z0-9]*')]]
+  registerForm = this.fb.group({
+    uname: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+    acno: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+    pswd: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*')]]
   })
-  
 
-  constructor(private ds:DataService,private router:Router,private fb:FormBuilder) { }
+
+  constructor(private ds: DataService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
-  register(){
+  register() {
     console.log(this.registerForm);
     // if(this.registerForm.get('uname')?.errors){
     //   alert("invalid usrname")
     // }
-    if(this.registerForm.valid){
-      var uname=this.registerForm.value.uname
-      var acno=this.registerForm.value.acno
-      var pswd=this.registerForm.value.pswd
-      
-      let result=this.ds.register(acno,pswd,uname)
-  
-      if(result){
-        alert("Account registered successfully")
-        this.router.navigateByUrl("")
-      }
-      else{
-        alert("Account already exist!!!!")
-      }
+    if (this.registerForm.valid) {
+      var uname = this.registerForm.value.uname
+      var acno = this.registerForm.value.acno
+      var pswd = this.registerForm.value.pswd
+      //asynchrounus events   
+
+      this.ds.register(acno, pswd, uname)
+        .subscribe((result: any) => {
+          if (result) {
+            alert(result.message)
+            this.router.navigateByUrl("")
+          }
+        },
+          (result) => {
+            alert(result.error.message)
+          }
+        )
+
     }
-   else{
-     alert("invalid form")
-   }
-    
+    else {
+      alert("invalid form")
+    }
+
   }
 
 }

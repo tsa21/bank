@@ -1,0 +1,6 @@
+
+<div *ngIf="item">
+<h6 style="color: green;">Are you sure do you want to delete this account {{item}}??</h6>
+<button class="btn btn-danger"(click)="deleteFromChild()">Delete</button>
+<button class="btn btn-primary"(click)="cancelFromChild()">Cancel</button>
+</div>

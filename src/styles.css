@@ -5,6 +5,14 @@
 
 form {
     border: 3px solid #f1f1f1;
+    width: 40%;
+    
+    /* width: 30%;
+   text-align: center; */
+  }
+  .form-center {
+    display:flex;
+    justify-content: center;
   }
   h1 {text-align: center;}
   
@@ -26,8 +34,9 @@ form {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 40%;
   }
+  
   
   /* Add a hover effect for buttons */
   button:hover {

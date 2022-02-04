@@ -1,24 +1,26 @@
 
 <body >
-  <form [formGroup]="loginForm"(ngSubmit)="login()" >
-    <div class="container">
-        <p>{{aim}}</p>
-        
-        <h1 >Login</h1>
-        <label for="bk_username"><b>Account Number</b></label>
-        <!-- <input type="text" (change)="acnoChange($event)" #acno [placeholder]=accno placeholder="Enter AccountNumber" id="bk_username" required> -->
-        <input type="text"  name="acno" formControlName="acno" [placeholder]=accno placeholder="Enter AccountNumber" id="bk_username" required>
-        <div *ngIf="(this.loginForm.get('acno')?.touched ||this.loginForm.get('acno')?.dirty) && this.loginForm.get('acno')?.errors" class="error">Invalid Account Number</div>
-        <label for="bk_password"><b>Password</b></label>
-        <input type="password"  name="pswd" formControlName="pswd"[placeholder]=pswrd placeholder="Enter Password"id="bk_password" required>
-        <div *ngIf="(this.loginForm.get('pswd')?.touched ||this.loginForm.get('pswd')?.dirty) && this.loginForm.get('pswd')?.errors" class="error">Invalid Password</div>
-        <!-- <button type="button" (click)="login(acno,pswd)">Login</button> -->
-        <button type="submit">Login</button>
-        <p style="color: green;">Not a User?<a routerLink="register">Register</a></p>
-    </div>
-    
+  <div class="form-center">
+    <form [formGroup]="loginForm"(ngSubmit)="login()" >
+      <div class="container">
+          <p>{{aim}}</p>
+          
+          <h1 >Login</h1>
+          <label for="bk_username"><b>Account Number</b></label>
+          <!-- <input type="text" (change)="acnoChange($event)" #acno [placeholder]=accno placeholder="Enter AccountNumber" id="bk_username" required> -->
+          <input type="text"  name="acno" formControlName="acno" [placeholder]=accno placeholder="Enter AccountNumber" id="bk_username" required>
+          <div *ngIf="(this.loginForm.get('acno')?.touched ||this.loginForm.get('acno')?.dirty) && this.loginForm.get('acno')?.errors" class="error">Invalid Account Number</div>
+          <label for="bk_password"><b>Password</b></label>
+          <input type="password"  name="pswd" formControlName="pswd"[placeholder]=pswrd placeholder="Enter Password"id="bk_password" required>
+          <div *ngIf="(this.loginForm.get('pswd')?.touched ||this.loginForm.get('pswd')?.dirty) && this.loginForm.get('pswd')?.errors" class="error">Invalid Password</div>
+          <!-- <button type="button" (click)="login(acno,pswd)">Login</button> -->
+          <button type="submit">Login</button>
+          <p style="color: green;">Not a User?<a routerLink="register">Register</a></p>
+      </div>
       
-</form>
+        
+  </form>
+  </div>
 
 
 </body>
